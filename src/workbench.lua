@@ -1,4 +1,4 @@
-local workbench = {}
+workbench = {}
 WB = {}
 screwdriver = screwdriver or {}
 local min, ceil = math.min, math.ceil
