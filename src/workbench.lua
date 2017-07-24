@@ -133,6 +133,9 @@ function workbench:set_formspec(meta, id)
 			formspecs[id]..xbg..default.get_hotbar_bg(0,3.25))
 end
 
+-- Workbench has storage too
+spoil.register_inv("xdecor:workbench", {"tool", "input", "hammer", "forms", "storage"})
+
 function workbench.construct(pos)
 	local meta = minetest.get_meta(pos)
 	local inv = meta:get_inventory()

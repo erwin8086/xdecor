@@ -216,6 +216,9 @@ xdecor.register("enchantment_table", {
 	allow_metadata_inventory_move = function() return 0 end
 })
 
+-- I dont know if this is necesary but better one inv too much as one forgotten...
+spoil.register_inv("xdecor:enchantment_table", {"tool", "mese"})
+
 minetest.register_entity("xdecor:book_open", {
 	visual = "sprite",
 	visual_size = {x=0.75, y=0.75},

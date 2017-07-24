@@ -80,6 +80,7 @@ function xdecor.register(name, def)
 					get_formspec_by_size(size))..xbg)
 		end
 		def.can_dig = def.can_dig or default_can_dig
+		spoil.register_inv("xdecor:"..name, {"main"})
 	elseif infotext and not def.on_construct then
 		def.on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
