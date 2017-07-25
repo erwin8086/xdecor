@@ -107,7 +107,7 @@ register_storage("multishelf", "Multi Shelf", {
 		 "default_wood.png", "default_wood.png^xdecor_multishelf.png"},
 })
 
-xdecor.register("candle", {
+light.register_light("candle", {
 	description = "Candle",
 	light_source = 12,
 	drawtype = "torchlike",
@@ -123,13 +123,16 @@ xdecor.register("candle", {
 		{name = "xdecor_candle_wall.png",
 			animation = {type="vertical_frames", length=1.5}}
 	},
+	-- for the light mod
+	power_type="fuel",
+	burntime=10,
 	selection_box = {
 		type = "wallmounted",
 		wall_top = {-0.25, -0.5, -0.25, 0.25, 0.1, 0.25},
 		wall_bottom = {-0.25, -0.5, -0.25, 0.25, 0.1, 0.25},
 		wall_side = {-0.5, -0.35, -0.15, -0.15, 0.4, 0.15}
 	}
-})
+}, xdecor.register)
 
 xdecor.register("chair", {
 	description = "Chair",
@@ -309,7 +312,7 @@ xdecor.register("ivy", {
 	sounds = default.node_sound_leaves_defaults()
 })
 
-xdecor.register("lantern", {
+light.register_light("lantern", {
 	description = "Lantern",
 	light_source = 13,
 	drawtype = "plantlike",
@@ -319,17 +322,22 @@ xdecor.register("lantern", {
 	walkable = false,
 	groups = {snappy=3, attached_node=1},
 	tiles = {{name="xdecor_lantern.png", animation={type="vertical_frames", length=1.5}}},
-	selection_box = xdecor.pixelbox(16, {{4, 0, 4, 8, 16, 8}})
-})
+	selection_box = xdecor.pixelbox(16, {{4, 0, 4, 8, 16, 8}}),
+	-- For light mod
+	power_type="fuel",
+	burntime=10,
+}, xdecor.register)
 
 for _, l in pairs({"iron", "wooden"}) do
-	xdecor.register(l.."_lightbox", {
+	light.register_light(l.."_lightbox", {
 		description = l:gsub("^%l", string.upper).." Light Box",
 		tiles = {"xdecor_"..l.."_lightbox.png"},
 		groups = {cracky=3, choppy=3, oddly_breakable_by_hand=2},
 		light_source = 13,
-		sounds = default.node_sound_glass_defaults()
-	})
+		sounds = default.node_sound_glass_defaults(),
+		power_type="electric",
+		eu_demand=7,
+	}, xdecor.register)
 end
 
 for _, f in pairs({"dandelion_white", "dandelion_yellow", "geranium",
@@ -462,7 +470,7 @@ xdecor.register("trampoline", {
 	sounds = {footstep = {name="xdecor_bouncy", gain=0.8}}
 })
 
-xdecor.register("tv", {
+light.register_light("tv", {
 	description = "Television",
 	light_source = 11,
 	groups = {cracky=3, oddly_breakable_by_hand=2},
@@ -472,8 +480,10 @@ xdecor.register("tv", {
 		 "xdecor_television_left.png^[transformFX",
 		 "xdecor_television_left.png", "xdecor_television_back.png",
 		{name="xdecor_television_front_animated.png",
-		 animation = {type="vertical_frames", length=80.0}} }
-})
+		 animation = {type="vertical_frames", length=80.0}} },
+	power_type="electric",
+	eu_demand=10,
+}, xdecor.register)
 
 xdecor.register("woodframed_glass", {
 	description = "Wood Framed Glass",
